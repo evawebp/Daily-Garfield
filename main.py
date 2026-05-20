@@ -77,7 +77,7 @@ async def webRequest(formatted_date, lang):
 
     print(f"Beginning process to obtain image source for {formatted_date}")
     
-    # 1. Open the stealth execution context manager
+    #  Open the stealth execution context manager
     async with Stealth().use_async(async_playwright()) as p:
         
         browser = await p.chromium.launch(
@@ -95,12 +95,12 @@ async def webRequest(formatted_date, lang):
         page = await context.new_page()
         
         try:
-            # 2. Navigate using the domcontentloaded strategy to outrun heavy ad servers
+            # Navigate using the domcontentloaded strategy to outrun heavy ad servers
             print(f"Navigating to: {url}")
             await page.goto(url, wait_until="domcontentloaded", timeout=30000)
             print("Base HTML structure loaded completely")
             
-            # 3. IMPLEMENTATION: The substring matching selector that bypasses obfuscation
+            # Substring bypasses obfuscation
             target_selector = "img[class*='comic__image']"
             
             print(f"Waiting for selector: {target_selector}")
@@ -122,7 +122,7 @@ async def webRequest(formatted_date, lang):
             
         await browser.close()
         
-        # 4. File-saving logic blocks
+        #  File-saving logic blocks
         if lang == "ES":
             es_image_sources[formatted_date] = img_src
             with open(ES_IMAGE_SOURCE_FILE, 'w') as json_file:
