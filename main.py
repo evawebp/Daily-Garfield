@@ -71,9 +71,9 @@ else:
 
 async def webRequest(formatted_date, lang):
     if lang == "ES":
-        url = f"https://www.gocomics.com/garfieldespanol/{formatted_date}"
+        url = f"https://www.gocomics.com/heathcliffespanol/{formatted_date}"
     else:
-        url = f"https://www.gocomics.com/garfield/{formatted_date}"
+        url = f"https://www.gocomics.com/heathcliff/{formatted_date}"
 
     print(f"Beginning process to obtain image source for {formatted_date}")
     
