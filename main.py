@@ -258,7 +258,7 @@ async def resetrole(interaction: discord.Interaction):
     else:
         await interaction.response.send_message("No role has been set for this server to reset.", ephemeral=True)
 
-@bot.tree.command(name='send-now', description='Use it to send Heathcliff comic (Defaults to today) YYYY/MM/DD')
+@bot.tree.command(name='send-now', description='Use it to send Garfield comic (Defaults to today) YYYY/MM/DD')
 @app_commands.allowed_installs(guilds=True, users=True)
 @app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True) # all allowed
 @app_commands.checks.has_permissions()
@@ -269,10 +269,10 @@ async def sendnow(interaction: discord.Interaction, date: str = None, lang: str 
         now = datetime.utcnow()
         if lang == "ES":
             formatted_date = (now - timedelta(days=1)).strftime("%Y/%m/%d")
-            await interaction.response.send_message("¡Enviando a Heathcliff!")
+            await interaction.response.send_message("¡Enviando a Garfield!")
         else:
             formatted_date = now.strftime("%Y/%m/%d")
-            await interaction.response.send_message("Sending Heathcliff!")
+            await interaction.response.send_message("Sending Garfield!")
         
     else:
         try:
@@ -283,23 +283,23 @@ async def sendnow(interaction: discord.Interaction, date: str = None, lang: str 
             
 
             # Check if the date is prior to the minimum date, since otherwise it will get stuck in a loop
-            if parsed_date.year < 2002:
-                await interaction.response.send_message("The year must be 2002 or later. Please use a later date.", ephemeral=True)
+            if parsed_date.year < 1979:
+                await interaction.response.send_message("The year must be 1979 or later. Please use a later date.", ephemeral=True)
                 return
 
             # Spanish archive starts later — enforce minimum for ES
-            if lang == "ES" and parsed_date < datetime(2012,5,21):
-                await interaction.response.send_message("Los archivos españoles solo llegan hasta el 21/05/2012. Por favor, utilice una fecha posterior.", ephemeral=True)
+            if lang == "ES" and parsed_date < datetime(1999,12,6):
+                await interaction.response.send_message("Los archivos españoles solo llegan hasta el 1999/12/06. Por favor, utilice una fecha posterior.", ephemeral=True)
                 return
             
             
         except ValueError:
             await interaction.response.send_message("Invalid date format. Please use YYYY/MM/DD.")
             return
-        await interaction.response.send_message("Sending Heathcliff!")
+        await interaction.response.send_message("Sending Garfield!")
     
     # Obtain the image source using the formatted date
-    imgsrc = await obtainHeathcliffSource(formatted_date, lang)
+    imgsrc = await obtainGarfieldSource(formatted_date, lang)
     print(imgsrc)
     
     # Send the image source in a message
