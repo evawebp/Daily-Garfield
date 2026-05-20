@@ -299,7 +299,7 @@ async def sendnow(interaction: discord.Interaction, date: str = None, lang: str 
         await interaction.response.send_message("Sending Garfield!")
     
     # Obtain the image source using the formatted date
-    imgsrc = await obtainGarfieldSource(formatted_date, lang)
+    imgsrc = await obtainImageSource(formatted_date, lang)
     print(imgsrc)
     
     # Send the image source in a message
